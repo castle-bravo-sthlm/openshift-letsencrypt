@@ -20,15 +20,15 @@ OWN_NAMESPACE="$(</run/secrets/kubernetes.io/serviceaccount/namespace)"
 CA_CRT_FILE=/run/secrets/kubernetes.io/serviceaccount/ca.crt
 
 keyfile() {
-    echo "$LETSENCRYPT_DATADIR/$1/key"
+    echo "$LETSENCRYPT_DATADIR/$1/privkey.pem"
 }
 
 certfile() {
-    echo "$LETSENCRYPT_DATADIR/$1/crt"
+    echo "$LETSENCRYPT_DATADIR/$1/cert.pem"
 }
 
 fullchainfile() {
-    echo "$LETSENCRYPT_DATADIR/$1/fullchain"
+    echo "$LETSENCRYPT_DATADIR/$1/fullchain.pem"
 }
 
 err() {
@@ -80,8 +80,8 @@ get_routes() {
     fi
     api_call "$routes_uri"
 }
-		
-		
+
+
 route_uri() {
     local name="${1-}"
     local namespace="${2-$OWN_NAMESPACE}"
